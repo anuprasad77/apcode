@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>apcode.py — Premium Software Development</title>
+  <meta name="description" content="apcode.py builds Android applications, websites, automation solutions, custom software and college projects.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css?v=2">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader" class="preloader">
+    <div class="logo-wrapper">
+      <svg class="logo-svg" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+          <path class="draw-line a-main" pathLength="2500" d="M 105 405 L 235 92 C 245 68 259 52 272 76 L 418 405" />
+          <path class="draw-line a-inner" pathLength="1000" stroke-width="17" d="M 175 405 L 235 270 L 303 405" />
+          <path class="draw-line p-main" pathLength="2500" d="M 245 270 L 440 270 C 492 270 525 235 525 178 C 525 118 493 78 438 78 L 267 78" />
+          <path class="draw-line p-main" pathLength="2500" stroke-width="17" d="M 300 78 L 300 270" />
+      </svg>
+      <svg class="final-logo" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 105 405 L 235 92 C 245 68 259 52 272 76 L 418 405 L 303 405 L 235 270 L 175 405 Z" />
+          <path d="M 245 270 L 440 270 C 492 270 525 235 525 178 C 525 118 493 78 438 78 L 267 78 L 300 150 L 438 150 C 455 150 460 160 460 178 C 460 196 453 205 438 205 L 275 205 Z" />
+      </svg>
+      <div class="spark s1"></div>
+      <div class="spark s2"></div>
+      <div class="spark s3"></div>
+      <div class="spark s4"></div>
+      <div class="wordmark">apcode<span class="dot">.</span><span class="py">py</span></div>
+      <div class="tagline">IDEAS&nbsp;&nbsp; | &nbsp;&nbsp;CODE&nbsp;&nbsp; | &nbsp;&nbsp;SOLUTIONS</div>
+    </div>
+  </div>
+
+  <!-- Premium Animated Background -->
+  <div class="premium-bg">
+    <div class="mesh-glow mesh-1"></div>
+    <div class="mesh-glow mesh-2"></div>
+    <div class="mesh-glow mesh-3"></div>
+    <div class="dots-grid"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="header" id="header" data-aos="fade-down" data-aos-duration="1000">
+    <div class="container nav-container">
+      <a href="#" class="logo-link"><img src="assets/logo.png" alt="apcode.py logo" class="logo-img"></a>
+      <nav class="nav-links">
+        <a href="#services" class="hover-underline">Services</a>
+        <a href="#process" class="hover-underline">Process</a>
+        <a href="#projects" class="hover-underline">Projects</a>
+        <a href="#contact" class="btn-neon">Let's Talk</a>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleMenu()">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#services" onclick="toggleMenu()">Services</a>
+      <a href="#process" onclick="toggleMenu()">Process</a>
+      <a href="#projects" onclick="toggleMenu()">Projects</a>
+      <a href="#contact" onclick="toggleMenu()" class="text-primary">Contact Us</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero relative">
+    <div class="container hero-grid">
+      <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
+        <div class="badge-premium" data-aos="zoom-in" data-aos-delay="200">
+          <span class="pulse-dot"></span> BUILDING THE FUTURE
+        </div>
+        <h1 class="hero-title">
+          Your Idea.<br>
+          <span class="text-gradient-animated">Our Code.</span><br>
+          Real Solutions.
+        </h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+          An elite software studio crafting high-performance Android applications, web platforms, and intelligent automation systems.
+        </p>
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+          <a href="#contact" class="btn-glow">Start a Project <i data-lucide="arrow-right"></i></a>
+          <a href="#projects" class="btn-outline-glow">View Work</a>
+        </div>
+      </div>
+      
+      <!-- Premium 3D Floating Mockup -->
+      <div class="hero-visual" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+        <div class="mockup-3d" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          <div class="mockup-header">
+            <div class="mac-btns"><span></span><span></span><span></span></div>
+            <div class="mockup-title">apcode_terminal</div>
+          </div>
+          <div class="mockup-body font-mono">
+            <p class="text-primary">> initializing apcode.py...</p>
+            <p class="text-gray delay-1">> loading modules [android, web, AI]</p>
+            <p class="text-secondary delay-2">> systems optimal.</p>
+            <p class="text-accent delay-3">> ready to build.</p>
+            <div class="cursor pulse"></div>
+          </div>
+          
+          <!-- Floating UI Elements -->
+          <div class="float-ui ui-1"><i data-lucide="smartphone" class="text-primary"></i> Apps</div>
+          <div class="float-ui ui-2"><i data-lucide="code-2" class="text-secondary"></i> Web</div>
+          <div class="float-ui ui-3"><i data-lucide="bot" class="text-accent"></i> AI</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Infinite Marquee / Trust Bar -->
+  <div class="marquee-container" data-aos="fade-up">
+    <div class="marquee-content">
+      <span>FAST DEVELOPMENT <i data-lucide="zap" class="inline-icon text-primary"></i></span>
+      <span>CUSTOM SOLUTIONS <i data-lucide="settings" class="inline-icon text-secondary"></i></span>
+      <span>PREMIUM DESIGN <i data-lucide="palette" class="inline-icon text-accent"></i></span>
+      <span>DEDICATED SUPPORT <i data-lucide="headset" class="inline-icon text-primary"></i></span>
+      <!-- Duplicate for infinite scroll -->
+      <span>FAST DEVELOPMENT <i data-lucide="zap" class="inline-icon text-primary"></i></span>
+      <span>CUSTOM SOLUTIONS <i data-lucide="settings" class="inline-icon text-secondary"></i></span>
+      <span>PREMIUM DESIGN <i data-lucide="palette" class="inline-icon text-accent"></i></span>
+      <span>DEDICATED SUPPORT <i data-lucide="headset" class="inline-icon text-primary"></i></span>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-header text-center" data-aos="fade-up">
+        <h2 class="section-title">Digital <span class="text-gradient-animated">Capabilities</span></h2>
+        <p class="section-subtitle">We engineer scalable, high-end digital products tailored to your exact needs.</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="premium-card" data-aos="fade-up" data-aos-delay="100" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1">
+          <div class="card-glow primary"></div>
+          <div class="card-icon"><i data-lucide="smartphone"></i></div>
+          <h3>Android Apps</h3>
+          <p>Native-feeling, highly optimized mobile applications for modern business needs.</p>
+        </div>
+        <div class="premium-card" data-aos="fade-up" data-aos-delay="200" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1">
+          <div class="card-glow secondary"></div>
+          <div class="card-icon"><i data-lucide="monitor"></i></div>
+          <h3>Web Platforms</h3>
+          <p>Responsive, lightning-fast web applications built with modern frontend frameworks.</p>
+        </div>
+        <div class="premium-card" data-aos="fade-up" data-aos-delay="300" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1">
+          <div class="card-glow accent"></div>
+          <div class="card-icon"><i data-lucide="cpu"></i></div>
+          <h3>Automation & AI</h3>
+          <p>Custom Python scripts, machine learning integrations, and workflow automations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="section relative">
+    <div class="container">
+      <div class="grid-2-col align-center">
+        <div data-aos="fade-right">
+          <h2 class="section-title">Our <span class="text-secondary">Process</span></h2>
+          <p class="section-subtitle">A transparent, agile pipeline ensuring your product is delivered on time, exceeding expectations.</p>
+          
+          <div class="process-list mt-10">
+            <div class="process-item" data-aos="fade-up" data-aos-delay="100">
+              <div class="process-icon">01</div>
+              <div>
+                <h4>Discovery & Architecture</h4>
+                <p>We map out your idea, choose the best tech stack, and design the database architecture.</p>
+              </div>
+            </div>
+            <div class="process-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="process-icon">02</div>
+              <div>
+                <h4>UI/UX & Prototyping</h4>
+                <p>Crafting premium, user-centric interfaces before writing a single line of code.</p>
+              </div>
+            </div>
+            <div class="process-item" data-aos="fade-up" data-aos-delay="300">
+              <div class="process-icon">03</div>
+              <div>
+                <h4>Agile Development</h4>
+                <p>Building your product with clean, scalable code and regular progress updates.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="process-visual" data-aos="zoom-in" data-aos-delay="200">
+          <div class="hologram-circle">
+            <div class="circle-inner"></div>
+            <div class="circle-core"><i data-lucide="code-2" size="48" class="text-secondary"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- College Projects (Special Section) -->
+  <section class="section">
+    <div class="container" data-aos="fade-up">
+      <div class="glass-banner">
+        <div class="banner-content">
+          <h2>Academic & College Projects 🎓</h2>
+          <p>We provide exclusive support for IT/CS students. Get custom-built final year projects complete with source code, documentation, and technical explanation.</p>
+          <div class="tags mt-6">
+            <span class="premium-tag">Machine Learning</span>
+            <span class="premium-tag">Full-Stack Web</span>
+            <span class="premium-tag">Data Science</span>
+            <span class="premium-tag">Android</span>
+          </div>
+        </div>
+        <div class="banner-action">
+          <a href="#contact" class="btn-glow">Get Project Help</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Projects -->
+  <section id="projects" class="section bg-darker">
+    <div class="container">
+      <div class="section-header text-center" data-aos="fade-up">
+        <h2 class="section-title">Featured <span class="text-gradient-animated">Work</span></h2>
+      </div>
+      
+      <div class="projects-showcase">
+        <!-- Project 1 -->
+        <div class="project-row" data-aos="fade-up">
+          <div class="project-image-wrapper" data-tilt data-tilt-max="3" data-tilt-glare data-tilt-max-glare="0.2">
+            <div class="project-overlay">
+              <i data-lucide="arrow-up-right" class="project-icon"></i>
+            </div>
+            <img src="assets/analytics.jpg" alt="Enterprise Analytics Dashboard" class="project-image">
+          </div>
+          <div class="project-info">
+            <div class="project-type text-primary">Web Platform</div>
+            <h3>Enterprise Analytics Dashboard</h3>
+            <p>A high-performance data visualization platform handling real-time metrics for business intelligence.</p>
+            <div class="tech-stack">
+              <span>React</span><span>Node.js</span><span>PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-row reverse" data-aos="fade-up">
+          <div class="project-image-wrapper" data-tilt data-tilt-max="3" data-tilt-glare data-tilt-max-glare="0.2">
+            <div class="project-overlay">
+              <i data-lucide="arrow-up-right" class="project-icon"></i>
+            </div>
+            <img src="assets/cv.jpg" alt="Computer Vision Automator" class="project-image">
+          </div>
+          <div class="project-info">
+            <div class="project-type text-secondary">AI / Machine Learning</div>
+            <h3>Computer Vision Automator</h3>
+            <p>Custom Python software utilizing TensorFlow to automate quality assurance via live camera feeds.</p>
+            <div class="tech-stack">
+              <span>Python</span><span>TensorFlow</span><span>OpenCV</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section relative">
+    <div class="contact-bg-glow"></div>
+    <div class="container relative z-10">
+      <div class="contact-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
+        <div class="contact-info">
+          <h2>Ready to <br><span class="text-gradient-animated">Innovate?</span></h2>
+          <p>Drop us a message. We usually respond within a few hours.</p>
+          
+          <div class="contact-methods mt-10">
+            <a href="mailto:apcode77.py@gmail.com" class="method-card">
+              <div class="method-icon"><i data-lucide="mail"></i></div>
+              <div>
+                <h4>Email</h4>
+                <p>apcode77.py@gmail.com</p>
+              </div>
+            </a>
+            <a href="https://instagram.com/apcode.py" target="_blank" class="method-card">
+              <div class="method-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              </div>
+              <div>
+                <h4>Instagram</h4>
+                <p>@apcode.py</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-form-container">
+          <form class="premium-form" action="https://formsubmit.co/apcode77.py@gmail.com" method="POST">
+            <!-- FormSubmit Configurations -->
+            <input type="hidden" name="_subject" value="New Project Request for apcode.py!">
+            <input type="hidden" name="_template" value="table">
+            <div class="form-grid">
+              <div class="input-group">
+                <input type="text" name="Name" required placeholder=" ">
+                <label>Your Name</label>
+              </div>
+              <div class="input-group">
+                <input type="email" name="Email" required placeholder=" ">
+                <label>Email Address</label>
+              </div>
+            </div>
+            <div class="input-group">
+              <select name="Project_Type" required>
+                <option value="" disabled selected>Select Project Type</option>
+                <option>Android App Development</option>
+                <option>Web Platform</option>
+                <option>Automation / AI</option>
+                <option>College / Academic Project</option>
+                <option>Other Custom Software</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <textarea name="Message" required rows="4" placeholder=" "></textarea>
+              <label>Tell us about your project requirements...</label>
+            </div>
+            <button type="submit" class="btn-glow w-full">Send Request <i data-lucide="send" size="18"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="apcode.py logo" class="logo-img-footer mb-4">
+          <p class="footer-tagline">Elite software development studio crafting digital experiences that perform.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#projects">Work</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-social">
+          <h4>Connect</h4>
+          <div class="social-icons">
+            <a href="https://instagram.com/apcode.py" target="_blank" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="mailto:apcode77.py@gmail.com" aria-label="Email"><i data-lucide="mail"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> apcode.py. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script>
+    // Preloader Logic
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 800); // Wait for fade out transition
+      }, 5800); // 5.8 seconds for full sequence
+    });
+
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Initialize Animate On Scroll
+    AOS.init({
+      once: true,
+      offset: 50,
+      duration: 800,
+      easing: 'ease-out-cubic',
+    });
+
+    // Current Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Sticky Header
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Menu
+    const mobileNav = document.getElementById('mobileNav');
+    function toggleMenu() {
+      mobileNav.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
