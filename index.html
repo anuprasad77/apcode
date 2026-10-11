@@ -18,8 +18,62 @@
   <!-- AOS Animation CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Early theme detector to prevent flash of wrong theme -->
+  <script>
+    (function () {
+      function getSystemTheme() {
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function getCurrentTheme() {
+        return document.documentElement.getAttribute('data-theme') || getSystemTheme();
+      }
+
+      function updateThemeUI(theme) {
+        const isDark = theme === 'dark';
+        const labelText = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+          btn.setAttribute('aria-label', labelText);
+          btn.setAttribute('title', labelText);
+        });
+        const mobilePill = document.getElementById('mobileDrawerThemeBtn');
+        if (mobilePill) {
+          mobilePill.setAttribute('data-active', theme);
+        }
+      }
+
+      window.setTheme = function(theme, saveManual = true) {
+        document.documentElement.classList.add('theme-transition');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (saveManual) {
+          try {
+            localStorage.setItem('apcode_theme', theme);
+          } catch (e) {}
+        }
+        updateThemeUI(theme);
+        setTimeout(() => {
+          document.documentElement.classList.remove('theme-transition');
+        }, 400);
+      };
+
+      window.toggleTheme = function() {
+        const current = getCurrentTheme();
+        const nextTheme = current === 'dark' ? 'light' : 'dark';
+        window.setTheme(nextTheme, true);
+      };
+
+      try {
+        const savedTheme = localStorage.getItem('apcode_theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        } else {
+          document.documentElement.setAttribute('data-theme', getSystemTheme());
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body>
@@ -65,16 +119,38 @@
         <a href="#process" class="hover-underline">Process</a>
         <a href="#projects" class="hover-underline">Projects</a>
         <a href="#contactForm" class="btn-neon">Let's Talk</a>
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light and dark mode" title="Toggle light and dark mode">
+          <span class="theme-toggle-icon">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon"></i>
+          </span>
+        </button>
       </nav>
-      <button class="mobile-menu-btn" onclick="toggleMenu()">
-        <i data-lucide="menu"></i>
-      </button>
+      <div class="nav-mobile-actions">
+        <button id="mobileThemeToggleBtn" class="theme-toggle-btn mobile-theme-btn" onclick="toggleTheme()" aria-label="Toggle light and dark mode" title="Toggle light and dark mode">
+          <span class="theme-toggle-icon">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon"></i>
+          </span>
+        </button>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
       <a href="#services" onclick="toggleMenu()">Services</a>
       <a href="#process" onclick="toggleMenu()">Process</a>
       <a href="#projects" onclick="toggleMenu()">Projects</a>
       <a href="#contactForm" onclick="toggleMenu()" class="text-primary">Contact Us</a>
+      <div class="mobile-theme-wrapper">
+        <span class="mobile-theme-label">Appearance</span>
+        <button class="theme-toggle-pill" id="mobileDrawerThemeBtn" onclick="toggleTheme()" aria-label="Switch theme mode">
+          <span class="pill-slider"></span>
+          <span class="pill-item pill-light"><i data-lucide="sun" size="14"></i> Light</span>
+          <span class="pill-item pill-dark"><i data-lucide="moon" size="14"></i> Dark</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -460,7 +536,7 @@
           <div class="social-icons">
             <a href="https://instagram.com/apcode.py" target="_blank" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -480,16 +556,106 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
   <script>
-    // Preloader Logic
-    window.addEventListener('load', () => {
+    // Preloader Dismiss Logic
+    const pageStartTime = performance.now();
+    const MIN_PRELOADER_DURATION = 6000; // 6 seconds ensures 100% of draw animations, glowing logo, wordmark, and tagline finish and are fully displayed
+
+    function dismissPreloader() {
       const preloader = document.getElementById('preloader');
-      setTimeout(() => {
+      if (preloader && preloader.style.display !== 'none' && !preloader.classList.contains('fade-out')) {
         preloader.classList.add('fade-out');
         setTimeout(() => {
           preloader.style.display = 'none';
-        }, 800); // Wait for fade out transition
-      }, 5800); // 5.8 seconds for full sequence
-    });
+        }, 850);
+      }
+    }
+
+    function schedulePreloaderDismiss() {
+      const elapsed = performance.now() - pageStartTime;
+      const remaining = Math.max(100, MIN_PRELOADER_DURATION - elapsed);
+      setTimeout(dismissPreloader, remaining);
+    }
+
+    if (document.readyState === 'complete') {
+      schedulePreloaderDismiss();
+    } else {
+      window.addEventListener('load', schedulePreloaderDismiss);
+    }
+
+    // Safety fallback (maximum 7.5s)
+    setTimeout(dismissPreloader, 7500);
+
+    // Optional click-to-skip if user wants to enter immediately
+    const preloaderEl = document.getElementById('preloader');
+    if (preloaderEl) {
+      preloaderEl.addEventListener('click', dismissPreloader);
+    }
+
+    // Theme Management Logic
+    function getSystemTheme() {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function getCurrentTheme() {
+      return document.documentElement.getAttribute('data-theme') || getSystemTheme();
+    }
+
+    function updateThemeUI(theme) {
+      const isDark = theme === 'dark';
+      const labelText = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+      document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+        btn.setAttribute('aria-label', labelText);
+        btn.setAttribute('title', labelText);
+      });
+      const mobilePill = document.getElementById('mobileDrawerThemeBtn');
+      if (mobilePill) {
+        mobilePill.setAttribute('data-active', theme);
+      }
+    }
+
+    let isThemeChanging = false;
+    function setTheme(theme, saveManual = true) {
+      document.documentElement.classList.add('theme-transition');
+      document.documentElement.setAttribute('data-theme', theme);
+      if (saveManual) {
+        try {
+          localStorage.setItem('apcode_theme', theme);
+        } catch (e) {}
+      }
+      updateThemeUI(theme);
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transition');
+      }, 400);
+    }
+
+    function toggleTheme(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      if (isThemeChanging) return;
+      isThemeChanging = true;
+      const current = getCurrentTheme();
+      const nextTheme = current === 'dark' ? 'light' : 'dark';
+      setTheme(nextTheme, true);
+      setTimeout(() => {
+        isThemeChanging = false;
+      }, 300);
+    }
+    window.toggleTheme = toggleTheme;
+    window.setTheme = setTheme;
+
+    // Update initial UI state
+    updateThemeUI(getCurrentTheme());
+
+    // Sync with system preference changes if user hasn't set manual override
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('apcode_theme')) {
+          setTheme(e.matches ? 'dark' : 'light', false);
+        }
+      });
+    }
 
     // Initialize Lucide Icons
     lucide.createIcons();
